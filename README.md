@@ -2,11 +2,19 @@
 Cuarzo is a "language" (so to speak) oriented to web development.
 
 # Features (At the moment)
-asd
-asd
-asd
+- asd
+- asd
 
 # Example code
+### module_one.caz
+```c
+print "Module 1"
+```
+### module_two.caz
+```c
+print "Module 2"
+```
+### test.caz
 ```c
 // Modules
 #include <./module_one.caz>
