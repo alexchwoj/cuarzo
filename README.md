@@ -5,7 +5,7 @@ Cuarzo is a "language" (so to speak) oriented to web development.
 - Print
 - Get valors of variables (print)
 - Variables (bool, float, int)
-- Color on print
+- Colors on print
 - Modules
 
 # Example code
