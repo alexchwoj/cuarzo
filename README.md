@@ -3,6 +3,7 @@ Cuarzo is a "language" (so to speak) oriented to web development.
 
 # Features (At the moment)
 - asd
+  - asd
 - asd
 
 # Example code
