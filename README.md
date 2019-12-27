@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/rdXQF8s.png" width="170" align="right">
+<img src="https://i.imgur.com/rdXQF8s.png" width="170" align="bottom">
 Cuarzo is a "language" (so to speak) in very early development, but it is planned that it will be oriented to web development with an already integrated HTTP server.
 
 # Features (At the moment)
