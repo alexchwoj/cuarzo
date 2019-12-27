@@ -2,9 +2,11 @@
 Cuarzo is a "language" (so to speak) oriented to web development.
 
 # Features (At the moment)
-- asd
-  - asd
-- asd
+- Print
+- Get valors of variables (print)
+- Variables (bool, float, int)
+- Color on print
+- Modules
 
 # Example code
 ### module_one.caz
