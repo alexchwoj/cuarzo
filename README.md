@@ -1,5 +1,4 @@
-![](https://i.imgur.com/rdXQF8s.png)
-# cuarzo
+<center>https://i.imgur.com/rdXQF8s.png</center>
 Cuarzo is a "language" (so to speak) in very early development, but it is planned that it will be oriented to web development with an already integrated HTTP server.
 
 # Features (At the moment)
