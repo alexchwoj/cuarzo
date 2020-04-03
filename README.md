@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://i.imgur.com/rdXQF8s.png" width="200">
 </p>
-Cuarzo is a "language" (so to speak) in very early development, but it is planned that it will be oriented to web development with an already integrated HTTP server.
+Cuarzo is a "language", I only develop it for fun
 
 # Features (At the moment)
 - Print
