@@ -9,7 +9,7 @@ print "Hello, this is Cuarzo~n~This is new line~n~Colors: ~r~RED ~g~GREEN ~y~YEL
 new float:flotante = 1.5
 new bool:boolean = True
 new int:entero = 5
-
+ 
 // Print valors
 print "El valor de flotante es: ~c~{flotante}~w~"
 print "El valor de boolean es: ~c~{boolean}~w~"

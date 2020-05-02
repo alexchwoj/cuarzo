@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://i.imgur.com/rdXQF8s.png" width="200">
 </p>
-Cuarzo is a "language", I only develop it for fun
+Cuarzo is an instruction interpreter for python, which can be used for small remote applications.
 
 # Features (At the moment)
 - Print
