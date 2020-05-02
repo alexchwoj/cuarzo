@@ -3,11 +3,12 @@
 </p>
 Cuarzo is an instruction interpreter for python, which can be used for small remote applications.
 
-# Features (At the moment)
+# Features
 - Print
 - Get valors of variables (print)
 - Variables (bool, float, int)
-- Colors on print
+- Colors
+- Sockets
 - Modules
 
 # Example code
