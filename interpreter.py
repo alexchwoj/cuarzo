@@ -1,4 +1,5 @@
 import os
+import socket
 import platform
 from colorama import init, Fore
 
@@ -90,14 +91,46 @@ def interpret(script, filename):
                         vars()[script[i][8:][:x]] = int(result[x + 3:])
             else:
                 print(f'\nCuarzo: Error on line {i + 1} ({filename}): Invalid variable type\n> {script[i]}')
+                return
+
+        # Sockets
+        elif script[i][:13] == 'socket_packet':
+            args = script[i][13:].split()
+
+            for i in range(len(args)):
+                args[i] = args[i].replace(",", "")
+
+                if i == 0:
+                    args[i] = args[i].replace('"', '')
+
+            if len(args) < 4:
+                print(f'\nCuarzo: Error on line {i + 1} ({filename}): Number of arguments does not match definition\n> {script[i]}')
+                return
+
+            if args[3] == "udp":
+                csocket = socket.socket(family = socket.AF_INET, type = socket.SOCK_DGRAM)
+
+            elif args[3] == "tcp":
+                csocket = socket.socket(family = socket.AF_INET, type = socket.SOCK_STREAM)
+
+            else:
+                print(f'\nCuarzo: Error on line {i + 1} ({filename}): Invalid socket protocol ({args[3]})\n> {script[i]}')
+                return
+
+            try:
+                csocket.sendto(args[1].encode(), (args[1], int(args[2])))
+
+            except Exception as e:
+                print(f'\nCuarzo: Error on line {i + 1} ({filename}): Invalid address ({args[1]}:{args[2]})\n> {script[i]}')
+                return
 
 
-        # Comentarios
+        # Comments
         elif script[i][:2] == '//':
             pass
 
 
-        # Espacios
+        # Spaces
         elif script[i] == '' or script[i] == ' ':
             pass
 
