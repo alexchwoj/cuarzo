@@ -1,0 +1,4 @@
+print "Socket test in ~g~Cuarzo~w~"
+
+// Send packet
+socket_packet "hello", 127.0.0.1, 7777, udp
