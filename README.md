@@ -39,3 +39,8 @@ print "El valor de flotante es: ~c~{flotante}~w~"
 print "El valor de boolean es: ~c~{boolean}~w~"
 print "El valor de entero es: ~c~{entero}~w~"
 ```
+
+
+Donate (BTC)
+
+`1CMEPuTPtEKRRbPokRp9vTqoJNVNmm1GXt`
