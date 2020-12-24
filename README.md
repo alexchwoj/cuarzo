@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://i.imgur.com/4yP2jQN.png" width="500">
 </p>
-Cuarzo is a low-level programming language, aimed at creating x86 software for Linux
+Cuarzo is a medium-level programming language, aimed at creating x86 software for Linux
 
 # About
 Cuarzo originally emerged as a real-time scripting engine, it was slow and screwy. Over time it was molded into what it is today, a compiled language in all its aspects!
