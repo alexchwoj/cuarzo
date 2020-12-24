@@ -5,15 +5,17 @@ class Parser(object):
     '''Analyzer'''
 
     def __init__(self, content):
+        # Scan content
         self.content = content
-
         lexer = Lexer(self.content)
         self.content = lexer.main()
 
         # Tokens to analyze
         self.tokens = lexer.tokens
+        
         # Token subscript
         self.index = 0
+        
         # The final syntax tree generated
         self.tree = SyntaxTree()
 
