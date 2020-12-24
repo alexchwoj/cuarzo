@@ -43,7 +43,7 @@ def lexer():
 
 
 def parser():
-    parser = Parser(content)
+    parser = Parser(content, file_name)
     parser.main()
     parser.display(parser.tree.root)
 

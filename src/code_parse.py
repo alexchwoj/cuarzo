@@ -4,10 +4,12 @@ from lexer import *
 class Parser(object):
     '''Analyzer'''
 
-    def __init__(self, content):
+    def __init__(self, content, file_name):
         # Scan content
         self.content = content
-        lexer = Lexer(self.content)
+        self.file_name = file_name
+
+        lexer = Lexer(self.content, self.file_name)
         self.content = lexer.main()
 
         # Tokens to analyze

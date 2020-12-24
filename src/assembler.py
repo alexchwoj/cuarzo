@@ -55,7 +55,7 @@ class Assembler(object):
 
         # File content
         self.content = content
-        self.parser = Parser(self.content)
+        self.parser = Parser(self.content, self.file_name)
         self.parser.main()
         
         # Syntax tree
