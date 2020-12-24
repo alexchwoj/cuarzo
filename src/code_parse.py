@@ -1,5 +1,6 @@
 from syntax import *
 from lexer import *
+from compiler_logger import *
 
 class Parser(object):
     '''Analyzer'''
@@ -56,8 +57,7 @@ class Parser(object):
                 break
             
             else:
-                print(f'[Error] Invalid block (sentence: {sentence_pattern})')
-                exit()
+                LoggerError(f'Invalid block (sentence: {sentence_pattern})', self.file_name, 0)
 
     # Include sentence pattern
     def _include(self, father = None):
@@ -128,8 +128,7 @@ class Parser(object):
                                                                'type': 'VARIABLE', 'variable_type': self.tokens[self.index].value}), param)
                         
                         else:
-                            print('[Error] An function definition parameter is invalid')
-                            exit()
+                            LoggerError('An function definition parameter is invalid', self.file_name, 0)
                         
                         self.index += 1
                     self.index += 1
@@ -310,8 +309,7 @@ class Parser(object):
                 self.index += 1
             
             else:
-                print(f'[Error] lack of left bracket (index: {self.index})')
-                exit()
+                LoggerError(f'Lack of left bracket (index: {self.index})', self.file_name, 0)
 
             # Opening brace
             if self.tokens[self.index].type == 'LB_BRACKET':
@@ -339,8 +337,7 @@ class Parser(object):
             self._for(father)
         
         else:
-            print('[Error] control style not supported!')
-            exit()
+            LoggerError('Control style not supported', self.file_name, 0)
 
     # Expression-->TODO
     def _expression(self, father = None, index = None):
@@ -392,9 +389,7 @@ class Parser(object):
                     
                     self.index += 2
                     if self.tokens[self.index].type != 'DIGIT_CONSTANT' and self.tokens[self.index].type != 'IDENTIFIER':
-                        print('[Error] Array table must be constant or identifier')
-                        print(self.tokens[self.index].type)
-                        exit()
+                        LoggerError(f'Array table must be constant or indentifier: {self.tokens[self.index].type}', self.file_name, 0)
                    
                     else:
                         # Array subscript
@@ -472,8 +467,7 @@ class Parser(object):
                     operand_stack.append(new_tree)
                 
                 else:
-                    print('[Error] Operator %s not supported' % item.current.value)
-                    exit()
+                    LoggerError(f'Operator {item.current.value} not supported', self.file_name, 0)
         
         self.tree.add_child_node(operand_stack[0].root, father)
 
@@ -611,8 +605,7 @@ class Parser(object):
                 self._function_call()
             
             else:
-                print('[Error] main broken')
-                exit()
+                LoggerError('Main broken', self.file_name, 0)
 
     # DFS traverses the syntax tree
     def display(self, node):
