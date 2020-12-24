@@ -66,7 +66,7 @@ class Lexer(object):
                         break
                     
                     else:
-                        LoggerError(f'[Error] Invalid include (index: {i})', self.file_name, 0)
+                        LoggerError(f'Invalid include (index: {i})', self.file_name, 0)
             
             # If it's a letter or starts with an underscore
             elif self.content[i].isalpha() or self.content[i] == '_':
@@ -98,7 +98,7 @@ class Lexer(object):
                     
                     elif not self.content[i].isdigit():
                         if self.content[i] == '.':
-                            LoggerError(f'[Error] Invalid float (index: {i})', self.file_name, 0)
+                            LoggerError(f'Invalid float (index: {i})', self.file_name, 0)
                         
                         else:
                             break
@@ -122,7 +122,7 @@ class Lexer(object):
                             break
                    
                     else:
-                        LoggerError('[Error] Lack of \"', self.file_name, 0)
+                        LoggerError('Lack of \"', self.file_name, 0)
  
                     self.tokens.append(Token(5, temp))
                     self.tokens.append(Token(4, '\"'))

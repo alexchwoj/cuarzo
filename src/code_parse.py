@@ -2,6 +2,7 @@ from syntax import *
 from lexer import *
 from compiler_logger import *
 
+
 class Parser(object):
     '''Analyzer'''
 

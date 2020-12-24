@@ -1,6 +1,7 @@
 import os
 import platform
 from code_parse import *
+from compiler_logger import *
 
 
 class AssemblerFileHandler(object):
@@ -33,8 +34,7 @@ class AssemblerFileHandler(object):
             self.text_pointer += 1
         
         else:
-            print(f'[Error] Invalid data tpye ({_type})')
-            exit()
+            LoggerError(f'Invalid data type ({_type})', self.file_name, 0)
 
     # Save the result to a file
     def generate_ass_file(self):
@@ -94,8 +94,7 @@ class Assembler(object):
         while current_node:
             if current_node.value == 'FunctionName':
                 if current_node.first_son.value != 'main':
-                    print(f'[Error] Function statement is not supported (function: {current_node.first_son.value})')
-                    exit()
+                    LoggerError(f'Function statement is not supported (function: {current_node.first_son.value})', self.file_name, 0)
                 
                 else:
                     self.ass_file_handler.insert('.globl main', 'TEXT')
@@ -174,8 +173,7 @@ class Assembler(object):
             if current_node.type == 'FUNCTION_NAME':
                 func_name = current_node.value
                 if func_name != 'scanf' and func_name != 'printf':
-                    print(f'[Error] Function call not supported (function: {func_name})')
-                    exit()
+                    LoggerError(f'Function call not supported (function: {func_name})', self.file_name, 0)
             
             # Function parameters
             elif current_node.value == 'CallParameterList':
@@ -192,8 +190,7 @@ class Assembler(object):
                             self.ass_file_handler.insert(line, 'DATA')
                         
                         else:
-                            print(f'[Error] In functionc_call digital constant parameter is not supported (type: {tmp_node.type})')
-                            exit()
+                            LoggerError(f'In functionc_call digital constant parameter is not supported (type: {tmp_node.type})', self.file_name, 0)
                         
                         self.symbol_table[label] = {
                             'type': 'STRING_CONSTANT', 'value': tmp_node.value}
@@ -207,8 +204,7 @@ class Assembler(object):
                         pass
                     
                     else:
-                        print(f'[Error] Parameter type is not supported (type: {tmp_node.type}, value: {tmp_node.value})')
-                        exit()
+                        LoggerError(f'Parameter type is not supported (type: {tmp_node.type}, value: {tmp_node.value})', self.file_name, 0)
                     
                     tmp_node = tmp_node.right
             current_node = current_node.right
@@ -241,12 +237,10 @@ class Assembler(object):
                         num += 2
                     
                     else:
-                        print('[Error] Field type except int and float is not supported')
-                        exit()
+                        LoggerError('Field type except int and float is not supported', self.file_name, 0)
                 
                 else:
-                    print('[Error] Parameter type not supported')
-                    exit()
+                    LoggerError('Parameter type not supported', self.file_name, 0)
             
             line = 'call printf'
             self.ass_file_handler.insert(line, 'TEXT')
@@ -263,8 +257,7 @@ class Assembler(object):
                     self.ass_file_handler.insert(line, 'TEXT')
                 
                 else:
-                    print('[Error] Parameter type not supported')
-                    exit()
+                    LoggerError('Parameter type not supported', self.file_name, 0)
             
             line = 'call scanf'
             self.ass_file_handler.insert(line, 'TEXT')
@@ -308,12 +301,10 @@ class Assembler(object):
                     line = 'fstps ' + current_node.value
                     self.ass_file_handler.insert(line, 'TEXT')
             else:
-                print('[Error] Field type except int and float not supported')
-                exit()
+                LoggerError('Field type except int and float not supported', self.file_name, 0)
         
         else:
-            print('[Error] Assignment wrong')
-            exit()
+            LoggerError('Assignment wrong', self.file_name, 0)
 
     # for statement
     def _control_for(self, node = None):
@@ -359,8 +350,7 @@ class Assembler(object):
         while current_node:
             if current_node.value == 'IfControl':
                 if current_node.first_son.value != 'Expression' or current_node.first_son.right.value != 'Sentence':
-                    print(f'[Error] Invalid control_if (node value: {current_node.first_son.value})')
-                    exit()
+                    LoggerError(f'Invalid control_if (node value: {current_node.first_son.value})', self.file_name, 0)
                 
                 self._expression(current_node.first_son)
                 self.traverse(current_node.first_son.right.first_son)
@@ -373,18 +363,18 @@ class Assembler(object):
                 self.traverse(current_node.first_son)
                 line = self.labels_ifelse['label_end'] + ':'
                 self.ass_file_handler.insert(line, 'TEXT')
+            
             current_node = current_node.right
 
     # while statement
     def _control_while(self, node = None):
-        print('[Error] while not supported')
+        LoggerError('while not supported', self.file_name, 0)
 
     # return statement
     def _return(self, node = None):
         current_node = node.first_son
         if current_node.value != 'return' or current_node.right.value != 'Expression':
-            print('[Error] Invalid return')
-            exit()
+            LoggerError('Invalid return', self.file_name, 0)
         
         else:
             current_node = current_node.right
@@ -396,8 +386,7 @@ class Assembler(object):
                 self.ass_file_handler.insert(line, 'TEXT')
             
             else:
-                print(f'[Error] return type not supported (type: {expres["type"]})')
-                exit()
+                LoggerError(f'return type not supported (type: {expres["type"]})', self.file_name, 0)
 
     # Traversal expression
     def _traverse_expression(self, node = None):
@@ -588,8 +577,7 @@ class Assembler(object):
                         self.symbol_table['bss_tmp'] = {
                             'type': 'IDENTIFIER', 'field_type': 'float'}
                     else:
-                        print('[Error] Operator type not supported')
-                        exit()
+                        LoggerError('Operator type not supported', self.file_name, 0)
                 
                 # Floating point has not been considered, only integer multiplication is considered
                 elif operator == '*':
@@ -601,8 +589,7 @@ class Assembler(object):
                         self.ass_file_handler.insert(line, 'TEXT')
                     
                     else:
-                        print('[Error] Operator not supported')
-                        exit()
+                        LoggerError('Operator not supported', self.file_name, 0)
 
                     if operand_b['type'] == 'ARRAY_ITEM':
                         line = 'movl ' + operand_b['operand'][1] + r', %edi'
@@ -613,8 +600,7 @@ class Assembler(object):
                         self.ass_file_handler.insert(line, 'TEXT')
                     
                     else:
-                        print('[Error] Operator not supported')
-                        exit()
+                        LoggerError('Operator not supported', self.file_name, 0)
                     
                     # Push the result into the stack
                     line = r'movl %eax, bss_tmp'
@@ -662,8 +648,7 @@ class Assembler(object):
                                 self.ass_file_handler.insert(line, 'TEXT')
                             
                             else:
-                                print('[Error] Array item not supported (>=)')
-                                exit()
+                                LoggerError('Array item not supported (>=)', self.file_name, 0)
                         else:
                             pass
 
@@ -673,8 +658,7 @@ class Assembler(object):
                                 self.ass_file_handler.insert(line, 'TEXT')
                             
                             else:
-                                print('[Error] Array item not supported (>=)')
-                                exit()
+                                LoggerError('Array item not supported (>=)', self.file_name, 0)
                         
                         else:
                             if operand_b['type'] == 'CONSTANT':
@@ -725,8 +709,7 @@ class Assembler(object):
                     pass
             
             else:
-                print('[Error] Operator not supported')
-                exit()
+                LoggerError('Operator not supported', self.file_name, 0)
         
         result = {'type': self.operand_stack[0]['type'], 'value': self.operand_stack[
             0]['operand']} if self.operand_stack else {'type': '', 'value': ''}
@@ -776,8 +759,7 @@ class Assembler(object):
                     self._control_while()
                 
                 else:
-                    print('[Error] Control type not supported')
-                    exit()
+                    LoggerError('Control type not supported', self.file_name, 0)
             
             # Expression statement
             elif node.value == 'Expression':
@@ -788,8 +770,7 @@ class Assembler(object):
                 self._return(node)
             
             else:
-                print('[Error] Sentenct type not supported')
-                exit()
+                LoggerError('Sentenct type not supported', self.file_name, 0)
 
     # Traverse nodes
     def traverse(self, node = None):
