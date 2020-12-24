@@ -149,4 +149,4 @@ class Lexer(object):
                     self.tokens.append(Token(3, self.content[i]))
                     i = self.skip_blank(i + 1)
 
-            return self.content
+        return self.content
