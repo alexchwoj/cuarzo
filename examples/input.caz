@@ -1,0 +1,17 @@
+main()
+{
+    var number
+
+    print("Enter a number: ")
+    input("%d", &number)
+
+    if(number > 10)
+    {
+        print("The number %d is higher than 10.\n", number)
+    }
+    else
+    {
+        print("The number %d is lower than 10.\n", number)
+    }
+    return 0
+}

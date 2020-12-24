@@ -1,16 +1,33 @@
-// Modules
-#include <./module_one.caz>
-#include <./module_two.caz>
+# comment type 1
 
-// Example print and comment
-print "Hello, this is Cuarzo~n~This is new line~n~Colors: ~r~RED ~g~GREEN ~y~YELLOW ~b~BLUE ~m~MAGENTA ~c~CYAN ~w~WHITE ~n~"
+/* multiple
+lines
+comment (type 3) */
 
-// Variables example
-new float:flotante = 1.5
-new bool:boolean = True
-new int:entero = 5
- 
-// Print valors
-print "El valor de flotante es: ~c~{flotante}~w~"
-print "El valor de boolean es: ~c~{boolean}~w~"
-print "El valor de entero es: ~c~{entero}~w~"
+// coment type 2
+
+#define VALOR_ONE 69
+#define VALOR_TWO
+
+main()
+{
+	#if defined VALOR_TWO
+    	print("Valor one: VALOR_ONE")
+	#endif
+
+	#undef VALOR_ONE
+	#define VALOR_ONE 20
+
+	print("Valor one: VALOR_ONE")
+
+	#if defined FAKE_DEFINE
+    	print("nothing")
+	#endif
+
+	var distance
+	var variable
+	print("Hellow world")
+	print("System info: __CUARZO_SYSTEM_NAME__, __CUARZO_SYSTEM_RELEASE__, __CUARZO_SYSTEM_VERSION__")
+	print("Build date: __CUARZO_BUILD_DATE__")
+	return 0
+}

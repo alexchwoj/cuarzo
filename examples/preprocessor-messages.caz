@@ -1,0 +1,5 @@
+#info This is a pre-processor information message
+
+#warning This is a warning
+
+#error This is a error

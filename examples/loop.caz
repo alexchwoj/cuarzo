@@ -1,0 +1,18 @@
+#info Hello.... this is a pre-processor info msg
+
+main()
+{
+    var test[6] = {1, 1, 1, 5, 5, 10}
+    var total
+
+    #warning wtffffff, hi
+
+    var i
+    for(i = 0 ; i < 6 ; i++)
+    {
+        total = total + test[i]
+    }
+
+    print("Total: %d\n", total)
+    return 0
+}
