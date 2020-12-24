@@ -5,10 +5,11 @@ from compiler_logger import *
 class Lexer(object):
     '''Lexical analyzer'''
 
-    def __init__(self, content):
+    def __init__(self, content, file_name):
         # It is used to save the results of the lexical analysis.
         self.tokens = []
         self.content = content
+        self.file_name = file_name
 
     # Determine if it is a null character
     def is_blank(self, index):

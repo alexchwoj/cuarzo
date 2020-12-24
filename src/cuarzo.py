@@ -36,7 +36,7 @@ content = None
 
 # Main functions
 def lexer():
-    lexer = Lexer(content)
+    lexer = Lexer(content, file_name)
     lexer.main()
     for token in lexer.tokens:
         print('[Lexer] (%s, %s)' % (token.type, token.value))
