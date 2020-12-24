@@ -1,5 +1,6 @@
 import re
 from tokenize import *
+from compiler_logger import *
 
 class Lexer(object):
     '''Lexical analyzer'''
@@ -64,8 +65,7 @@ class Lexer(object):
                         break
                     
                     else:
-                        print(f'[Error] Invalid include (index: {i})')
-                        exit()
+                        LoggerError(f'[Error] Invalid include (index: {i})', self.file_name, 0)
             
             # If it's a letter or starts with an underscore
             elif self.content[i].isalpha() or self.content[i] == '_':
@@ -97,8 +97,7 @@ class Lexer(object):
                     
                     elif not self.content[i].isdigit():
                         if self.content[i] == '.':
-                            print(f'[Error] Invalid float (index: {i})')
-                            exit()
+                            LoggerError(f'[Error] Invalid float (index: {i})', self.file_name, 0)
                         
                         else:
                             break
@@ -122,9 +121,8 @@ class Lexer(object):
                             break
                    
                     else:
-                        print('[Error] lack of \"')
-                        exit()
-
+                        LoggerError('[Error] Lack of \"', self.file_name, 0)
+ 
                     self.tokens.append(Token(5, temp))
                     self.tokens.append(Token(4, '\"'))
                 

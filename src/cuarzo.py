@@ -34,7 +34,7 @@ file_name = None
 # Document content
 content = None
 
-
+# Main functions
 def lexer():
     lexer = Lexer(content)
     lexer.main()
@@ -72,7 +72,7 @@ def show_help():
     print('\nUsage example:\n\tcuarzo test.caz -c')
     exit()
 
-
+# Init menu
 if __name__ == '__main__':
     # Args
     try:
@@ -103,7 +103,6 @@ if __name__ == '__main__':
 
     file_name = sys.argv[1].split('.')[0]
     source_file = open(input_file, 'r')
-    #content = source_file.read()
     content = preprocessor(source_file, file_name)
 
     if option in ['-compile', '-c']:
